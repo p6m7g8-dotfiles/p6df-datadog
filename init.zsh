@@ -22,8 +22,11 @@ p6df::modules::datadog::deps() {
 p6df::modules::datadog::langs() {
 
   pip install datadog # dog cli
+}
 
-  p6_github_util_org_repo_clone DataDog
+p6df::modules::datadog::clones() {
+
+  p6_github_login_clone DataDog "$P6_DFZ_SRC_DIR"
 }
 
 ######################################################################
