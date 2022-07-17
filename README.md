@@ -44,6 +44,7 @@
 
 #### p6df-datadog/init.zsh:
 
+- p6df::modules::datadog::clones()
 - p6df::modules::datadog::deps()
 - p6df::modules::datadog::init()
 - p6df::modules::datadog::langs()
