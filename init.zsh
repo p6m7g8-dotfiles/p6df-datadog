@@ -21,7 +21,13 @@ p6df::modules::datadog::deps() {
 ######################################################################
 p6df::modules::datadog::langs() {
 
-  pip install datadog # dog cli
+  pip install datadog
+  gem install dogapi
+  go get github.com/DataDog/datadog-go
+  npm install datadog-metrics
+  luarocks install datadog
+  cpanm WebService::DataDog
+  cargo install datadog
 
   p6_return_void
 }
