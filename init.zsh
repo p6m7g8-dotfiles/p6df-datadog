@@ -27,7 +27,7 @@ p6df::modules::datadog::langs() {
   npm install datadog-metrics
   luarocks install datadog
   cpanm WebService::DataDog
-  cargo install datadog
+#  cargo install datadog # crate only
 
   p6_return_void
 }
