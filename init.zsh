@@ -21,7 +21,7 @@ p6df::modules::datadog::deps() {
 ######################################################################
 p6df::modules::datadog::langs() {
 
-  pip install datadog
+#  pip install datadog # TODO: convert uv
   gem install dogapi
   go get github.com/DataDog/datadog-go
   npm install datadog-metrics
