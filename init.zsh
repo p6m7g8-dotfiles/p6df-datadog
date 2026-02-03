@@ -42,7 +42,7 @@ p6df::modules::datadog::langs() {
 ######################################################################
 p6df::modules::datadog::clones() {
 
-  p6_github_login_clone DataDog "$P6_DFZ_SRC_FOCUSED_DIR"
+  p6_github_cli_parallel_clone DataDog "$P6_DFZ_SRC_FOCUSED_DIR"
 
   p6_return_void
 }
