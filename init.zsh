@@ -105,7 +105,7 @@ p6df::modules::datadog::prompt::mod() {
 #	profile -
 #	env -
 #
-#  Environment:	 P6_DFZ_PROFILE_DATADOG
+#  Environment:	 DATADOG_API_KEY DATADOG_APP_KEY DATADOG_SITE DD_API_KEY DD_APP_KEY DD_SITE P6_DFZ_PROFILE_DATADOG
 #>
 ######################################################################
 p6df::modules::datadog::profile::on() {
@@ -154,6 +154,20 @@ p6df::modules::datadog::profile::off() {
   p6_env_export_un DD_API_KEY
   p6_env_export_un DD_APP_KEY
   p6_env_export_un DD_SITE
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::datadog::mcp()
+#
+#>
+######################################################################
+p6df::modules::datadog::mcp() {
+
+  p6_js_npm_global_install "datadog-mcp-server"
 
   p6_return_void
 }
