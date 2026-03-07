@@ -17,7 +17,9 @@
 
 ## Summary
 
-TODO: Add a short summary of this module.
+p6df module for Datadog: multi-language SDK installs, profile switching
+(`DATADOG_API_KEY`, `DD_API_KEY`, `DD_SITE`), and MCP server
+(`datadog-mcp-server`) for AI-driven observability queries.
 
 ## Contributing
 
@@ -37,16 +39,28 @@ TODO: Add a short summary of this module.
 
 - `p6df::modules::datadog::clones()`
 - `p6df::modules::datadog::deps()`
+- `p6df::modules::datadog::init(_module, dir)`
+  - Args:
+    - _module
+    - dir
 - `p6df::modules::datadog::langs()`
+- `p6df::modules::datadog::mcp()`
+- `p6df::modules::datadog::profile::off()`
+- `p6df::modules::datadog::profile::on(profile, env)`
+  - Args:
+    - profile
+    - env
+- `str str = p6df::modules::datadog::prompt::mod()`
 
 ## Hierarchy
 
 ```text
 .
 ├── init.zsh
+├── lib
 └── README.md
 
-1 directory, 2 files
+2 directories, 2 files
 ```
 
 ## Author
