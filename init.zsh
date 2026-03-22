@@ -9,6 +9,9 @@
 p6df::modules::datadog::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6common
+    DataDog/datadog-api-claude-plugin
+    datadog-labs/pup
+    ahmedasmar/devops-claude-skills:monitoring-observability
   )
 }
 
@@ -41,7 +44,7 @@ p6df::modules::datadog::init() {
 ######################################################################
 p6df::modules::datadog::langs() {
 
-#  pip install datadog # TODO: convert uv
+  uv tool install datadog
   gem install dogapi
   go get github.com/DataDog/datadog-go
   npm install datadog-metrics
