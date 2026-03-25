@@ -102,20 +102,20 @@ p6df::modules::datadog::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::datadog::profile::on(profile, env)
+# Function: p6df::modules::datadog::profile::on(profile, code)
 #
 #  Args:
 #	profile -
-#	env -
+#	code -
 #
 #  Environment:	 DATADOG_API_KEY DATADOG_APP_KEY DATADOG_SITE DD_API_KEY DD_APP_KEY DD_SITE P6_DFZ_PROFILE_DATADOG
 #>
 ######################################################################
 p6df::modules::datadog::profile::on() {
   local profile="$1"
-  local env="$2"
+  local code="$2"
 
-  p6_run_code "$env"
+  p6_run_code "$code"
   p6_env_export "P6_DFZ_PROFILE_DATADOG" "$profile"
 
   # Support common DD_* aliases while keeping DATADOG_* canonical.
