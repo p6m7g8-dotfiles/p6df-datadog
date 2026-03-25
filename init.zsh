@@ -18,6 +18,27 @@ p6df::modules::datadog::deps() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::datadog::home::symlinks()
+#
+#  Environment:	 HOME P6_DFZ_SRC_DIR
+#>
+######################################################################
+p6df::modules::datadog::home::symlinks() {
+
+  p6_file_symlink "$P6_DFZ_SRC_DIR/ahmedasmar/devops-claude-skills/monitoring-observability"                                 "$HOME/.claude/skills/monitoring-observability"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/fluentbit-generator"               "$HOME/.claude/skills/fluentbit-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/fluentbit-validator"               "$HOME/.claude/skills/fluentbit-validator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/logql-generator"                   "$HOME/.claude/skills/logql-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/loki-config-generator"             "$HOME/.claude/skills/loki-config-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/promql-generator"                  "$HOME/.claude/skills/promql-generator"
+  p6_file_symlink "$P6_DFZ_SRC_DIR/akin-ozer/cc-devops-skills/devops-skills-plugin/skills/promql-validator"                  "$HOME/.claude/skills/promql-validator"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::datadog::init(_module, dir)
 #
 #  Args:
