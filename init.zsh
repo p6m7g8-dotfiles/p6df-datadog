@@ -137,27 +137,8 @@ p6df::modules::datadog::profile::on() {
   local code="$2"
 
   p6_run_code "$code"
-  p6_env_export "P6_DFZ_PROFILE_DATADOG" "$profile"
 
-  # Support common DD_* aliases while keeping DATADOG_* canonical.
-  if p6_string_blank "$DATADOG_API_KEY" && p6_string_blank_NOT "$DD_API_KEY"; then
-    p6_env_export "DATADOG_API_KEY" "$DD_API_KEY"
-  fi
-  if p6_string_blank "$DATADOG_APP_KEY" && p6_string_blank_NOT "$DD_APP_KEY"; then
-    p6_env_export "DATADOG_APP_KEY" "$DD_APP_KEY"
-  fi
-  if p6_string_blank "$DATADOG_SITE"; then
-    p6_env_export "DATADOG_SITE" "datadoghq.com"
-  fi
-  if p6_string_blank "$DD_API_KEY" && p6_string_blank_NOT "$DATADOG_API_KEY"; then
-    p6_env_export "DD_API_KEY" "$DATADOG_API_KEY"
-  fi
-  if p6_string_blank "$DD_APP_KEY" && p6_string_blank_NOT "$DATADOG_APP_KEY"; then
-    p6_env_export "DD_APP_KEY" "$DATADOG_APP_KEY"
-  fi
-  if p6_string_blank "$DD_SITE" && p6_string_blank_NOT "$DATADOG_SITE"; then
-    p6_env_export "DD_SITE" "$DATADOG_SITE"
-  fi
+  p6_env_export "P6_DFZ_PROFILE_DATADOG" "$profile"
 
   p6_return_void
 }
@@ -165,19 +146,19 @@ p6df::modules::datadog::profile::on() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::datadog::profile::off()
+# Function: p6df::modules::datadog::profile::off(code)
+#
+#  Args:
+#	code - shell code block previously passed to profile::on
 #
 #  Environment:	 DATADOG_API_KEY DATADOG_APP_KEY DATADOG_SITE DD_API_KEY DD_APP_KEY DD_SITE P6_DFZ_PROFILE_DATADOG
 #>
 ######################################################################
 p6df::modules::datadog::profile::off() {
+  local code="$1"
+
+  p6_env_unset_from_code "$code"
   p6_env_export_un P6_DFZ_PROFILE_DATADOG
-  p6_env_export_un DATADOG_API_KEY
-  p6_env_export_un DATADOG_APP_KEY
-  p6_env_export_un DATADOG_SITE
-  p6_env_export_un DD_API_KEY
-  p6_env_export_un DD_APP_KEY
-  p6_env_export_un DD_SITE
 
   p6_return_void
 }
@@ -192,6 +173,9 @@ p6df::modules::datadog::profile::off() {
 p6df::modules::datadog::mcp() {
 
   p6_js_npm_global_install "datadog-mcp-server"
+
+  p6df::modules::anthropic::mcp::server::add "datadog" "npx" "-y" "datadog-mcp-server"
+  p6df::modules::openai::mcp::server::add "datadog" "npx" "-y" "datadog-mcp-server"
 
   p6_return_void
 }
