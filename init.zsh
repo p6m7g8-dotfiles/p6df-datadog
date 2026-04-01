@@ -101,5 +101,5 @@ p6df::modules::datadog::mcp() {
 ######################################################################
 p6df::modules::datadog::profile::mod() {
 
-  p6_return_words 'datadog' '$DATADOG_API_KEY'
+  p6_return_words 'datadog' "$"
 }
