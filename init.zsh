@@ -39,26 +39,6 @@ p6df::modules::datadog::home::symlinks() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::datadog::init(_module, dir)
-#
-#  Args:
-#	_module -
-#	dir -
-#
-#>
-######################################################################
-p6df::modules::datadog::init() {
-  local _module="$1"
-  local dir="$2"
-
-  p6_bootstrap "$dir"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::datadog::langs()
 #
 #>
@@ -94,78 +74,6 @@ p6df::modules::datadog::clones() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::datadog::prompt::mod()
-#
-#  Returns:
-#	str - str
-#
-#  Environment:	 DATADOG_API_KEY DATADOG_APP_KEY DATADOG_SITE P6_DFZ_PROFILE_DATADOG
-#>
-######################################################################
-p6df::modules::datadog::prompt::mod() {
-  local str=""
-  if p6_string_blank_NOT "$P6_DFZ_PROFILE_DATADOG"; then
-    str="datadog:\t  $P6_DFZ_PROFILE_DATADOG:"
-    if p6_string_blank_NOT "$DATADOG_SITE"; then
-      str=$(p6_string_append "$str" "$DATADOG_SITE" " ")
-    fi
-    if p6_string_blank_NOT "$DATADOG_API_KEY"; then
-      str=$(p6_string_append "$str" "api" "/")
-    fi
-    if p6_string_blank_NOT "$DATADOG_APP_KEY"; then
-      str=$(p6_string_append "$str" "app" "/")
-    fi
-  fi
-
-  p6_return_str "$str"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::datadog::profile::on(profile, code)
-#
-#  Args:
-#	profile -
-#	code -
-#
-#  Environment:	 DATADOG_API_KEY DATADOG_APP_KEY DATADOG_SITE DD_API_KEY DD_APP_KEY DD_SITE P6_DFZ_PROFILE_DATADOG
-#>
-######################################################################
-p6df::modules::datadog::profile::on() {
-  local profile="$1"
-  local code="$2"
-
-  p6_run_code "$code"
-
-  p6_env_export "P6_DFZ_PROFILE_DATADOG" "$profile"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::datadog::profile::off(code)
-#
-#  Args:
-#	code - shell code block previously passed to profile::on
-#
-#  Environment:	 DATADOG_API_KEY DATADOG_APP_KEY DATADOG_SITE DD_API_KEY DD_APP_KEY DD_SITE P6_DFZ_PROFILE_DATADOG
-#>
-######################################################################
-p6df::modules::datadog::profile::off() {
-  local code="$1"
-
-  p6_env_unset_from_code "$code"
-  p6_env_export_un P6_DFZ_PROFILE_DATADOG
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::datadog::mcp()
 #
 #>
@@ -178,4 +86,20 @@ p6df::modules::datadog::mcp() {
   p6df::modules::openai::mcp::server::add "datadog" "npx" "-y" "datadog-mcp-server"
 
   p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: words datadog $DATADOG_API_KEY = p6df::modules::datadog::profile::mod()
+#
+#  Returns:
+#	words - datadog $DATADOG_API_KEY
+#
+#  Environment:	 DATADOG_API_KEY
+#>
+######################################################################
+p6df::modules::datadog::profile::mod() {
+
+  p6_return_words 'datadog' "$"
 }
