@@ -91,12 +91,12 @@ p6df::modules::datadog::mcp() {
 ######################################################################
 #<
 #
-# Function: words datadog $DATADOG_API_KEY = p6df::modules::datadog::profile::mod()
+# Function: words datadog $DATADOG_SITE $DATADOG_API_KEY = p6df::modules::datadog::profile::mod()
 #
 #  Returns:
-#	words - datadog $DATADOG_API_KEY
+#	words - datadog $DATADOG_SITE $DATADOG_API_KEY
 #
-#  Environment:	 DATADOG_API_KEY
+#  Environment:	 DATADOG_SITE DATADOG_API_KEY
 #>
 ######################################################################
 p6df::modules::datadog::profile::mod() {
